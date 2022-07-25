@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Form page</title>
+	
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+crossorigin="anonymous">
+	
+</head>
+<body>
+	<!-- <h2>Inside the form page</h2> -->
+	
+	<!-- Shortuct of emmet :    .container>.row>.col-md-6.offset-md-3 -->
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-md-6 offset-md-3">
+		
+	
+	  <!-- take name="" : as username field of Login data ,also logindata th:object is used to show the previous obj data if error comes in submitting.
+	  appendclassname is used to show the errors , in THymeleaf we need to iterate over errors
+	   -->
+	
+	
+		<!--                                   -->	
+		
+		
+<form  th:action="@{/submit_form}" method="post" th:object="${loginData}">
+  <h1 class="text-center">Register Here</h1>
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1">User Name</label>
+     <input
+     name="userName";            
+     type="text" 
+     th:value="${loginData.userName}"
+     
+     th:classappend="${#fields.hasErrors('userName')?'is-invalid':'' }" 
+               
+     class="form-control" 
+     id="exampleInputEmail1" 
+     aria-describedby="emailHelp"
+     placeholder="Enter here">
+       
+     <div th:each=" e :  ${#fields.errors('userName')}" th:text="${e}"  id="validationServer03FeedBack" class="invalid-feedback">
+     </div>
+     
+     
+  </div>
+  
+  <!-- -------------------------------------------------   -->
+  
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">Email</label>
+    
+    <input 
+    name="email"
+      class="form-control" 
+    type="email" 
+     th:value="${loginData.email}"  
+    th:classappend="${#fields.hasErrors('email')?'is-invalid':'' }" 
+ 
+     id="exampleInputPassword1" 
+     aria-describedby="emailHelp"
+     placeholder="Password here">
+
+    <div th:each=" e :  ${#fields.errors('email')}" th:text="${e}"  id="validationServer03FeedBack" class="invalid-feedback">
+     </div> 
+  </div>
+  
+  
+  <!-- -------------------------------------------------   -->
+   <!--
+ <div>
+    <label for="can be used to give space"></label> 
+  </div>
+  
+  
+  <div class="form-group form-check">   -->
+  
+  
+  <!-- -------------------------------------------------   -->
+  
+  
+ <div class="form-group from-check  ">
+  
+    <input 
+     class="form-check-input" 
+    name="agreed"
+     type="checkbox" 
+   th:classappend="${#fields.hasErrors('agreed')?'is-invalid':'' }" 
+     id="exampleCheck1">
+     
+     
+  
+    <label class="form-check-label"
+     for="exampleCheck1">Agree terms and cond.</label>
+  
+  <div th:each=" e :  ${#fields.errors('agreed')}" th:text="${e}"  id="validationServer03FeedBack" class="invalid-feedback">
+     </div>
+  <div class="text-center">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+</form>
+		
+
+  <!-- -------------------------------------------------   -->
+  		
+		
+	<!--                                   -->	
+		
+		</div>
+		</div>
+	</div>
+	
+	
+	
+</body>
+</html>
